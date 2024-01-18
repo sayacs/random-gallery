@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Image Viewer</title>
+    <!-- Include the Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Add custom CSS styles -->
+    <style>
+        /* Style for the image container */
+        #image-container {
+            background-color: #f0f0f0;
+        }
+
+        /* Style for the title container */
+        #title-container {
+            width: 90vw; /* 90% of viewport width */
+        }
+
+        /* Style for the h1 text */
+        #title-container h1 {
+            font-size: 10vh; /* Adjust the font size based on viewport width */
+        }
+    </style>
+</head>
+<body>
+    <!-- Image container to display the random image -->
+    <div id="image-container" class="w-screen h-screen flex justify-center items-center relative">
+        <img id="random-image" src="" alt="Random Image" class="max-w-full max-h-full">
+
+        <!-- Title container to display the title -->
+        <div id="title-container" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+            <h1 class="leading-tight">Random<br>Gallery</h1>
+        </div>
+    </div>
+
+    <!-- JavaScript code to load random images from Lorem Picsum -->
+    <script>
+        // Function to load a random image from Lorem Picsum
+        function loadRandomImage() {
+            // Generate a random image URL from Lorem Picsum
+            const randomImageUrl = `https://picsum.photos/${getRandomWidth()}/${getRandomHeight()}`;
+
+            // Set the source of the image element to the random image URL
+            document.getElementById('random-image').src = randomImageUrl;
+        }
+
+        // Generate a random width for the image (between 300 and 800)
+        function getRandomWidth() {
+            return Math.floor(Math.random() * (800 - 300 + 1) + 300);
+        }
+
+        // Generate a random height for the image (between 200 and 600)
+        function getRandomHeight() {
+            return Math.floor(Math.random() * (600 - 200 + 1) + 200);
+        }
+
+        // Initial load of a random image
+        loadRandomImage();
+
+        // Change the image at regular intervals (e.g., every 5 seconds)
+        setInterval(loadRandomImage, 5000); // Change image every 5 seconds
+    </script>
+</body>
+</html>
